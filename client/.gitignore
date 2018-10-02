@@ -3,6 +3,9 @@
 # dependencies
 /node_modules
 
+#secret
+/src/config
+
 # testing
 /coverage
 

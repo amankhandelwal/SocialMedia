@@ -171,7 +171,7 @@ router.post(
 				company: req.body.company,
 				location: req.body.location,
 				from: req.body.from,
-				to: req.body.to,
+				to: req.body.current ? null : req.body.to,
 				current: req.body.current,
 				description: req.body.description
 			};
@@ -205,7 +205,7 @@ router.post(
 				degree: req.body.degree,
 				fieldofstudy: req.body.fieldofstudy,
 				from: req.body.from,
-				to: req.body.to,
+				to: req.body.current ? null : req.body.to,
 				current: req.body.current,
 				description: req.body.description
 			};

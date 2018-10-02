@@ -18,7 +18,7 @@ router.get("/test", (req, res) => console.log("posts"));
 // @access Private
 router.post(
 	"/",
-	passport.authenticate("jwt", { session: true }),
+	passport.authenticate("jwt", { session: false }),
 	(req, res) => {
 		const { errors, isValid } = validatePostInput(req.body);
 		//check validation
@@ -170,17 +170,18 @@ router.delete(
 						comment => comment._id.toString() === req.params.comment_id
 					).length === 0
 				) {
+					console.log("comment not found");
 					return res
 						.status(404)
 						.json({ commentnotexists: "Comment does not exist" });
-					//Get remove index
-					const removeIndex = post.comments
-						.map(comment => comment._id.toString())
-						.indexOf(req.params.comment_id);
-					//Splice comment out of the array
-					post.comments.splice(removeIndex, 1);
-					post.save().then(post => res.json(post));
 				}
+				//Get remove index
+				const removeIndex = post.comments
+					.map(comment => comment._id.toString())
+					.indexOf(req.params.comment_id);
+				//Splice comment out of the array
+				post.comments.splice(removeIndex, 1);
+				post.save().then(post => res.json(post));
 			})
 			.catch(err => res.status(404).json({ postnotfound: "No post found" }));
 	}
