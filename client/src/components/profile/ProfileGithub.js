@@ -1,12 +1,10 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import secrets from "../../config/secrets";
 
 class ProfileGithub extends Component {
 	constructor(props) {
 		super(props);
-		//TODO: Secure Keys with Gitignore
 		this.state = {
 			clientId: secrets.clientId,
 			clientSecret: secrets.clientSecret,
